@@ -8,11 +8,11 @@ WORKDIR /app
 
 COPY /requirements.txt /setup.py /ouroboros /ouroboros-wrapper /README.md /app/
 
-RUN apk add --no-cache tzdata && \
+RUN apk add --no-cache bash tzdata && \
     pip install --no-cache-dir -r requirements.txt
 
 COPY /pyouroboros /app/pyouroboros
 
 RUN pip install --no-cache-dir .
 
-ENTRYPOINT ["ouroboros-wrapper"]
+ENTRYPOINT ["/app/ouroboros-wrapper"]
